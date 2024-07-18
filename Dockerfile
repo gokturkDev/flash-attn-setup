@@ -1,7 +1,11 @@
 FROM nvcr.io/nvidia/pytorch:24.06-py3
 
-RUN pip install flash_attn
+
 WORKDIR /app
+RUN python -m venv .venv
+RUN source .venv/bin/activate
+RUN pip install flash_attn
+
 COPY test.py /app
 RUN python test.py
 
