@@ -14,5 +14,5 @@ COPY test.py /app
 
 RUN pip install infinity-emb[all]
 
-RUN python3.10 -m infinity_emb.infinity_server:cli v2 --model-id BAAI/bge-small-en-v1.5 --engine torch --preload-only || [ $? -eq 3 ]
+RUN infinity_emb v2 --model-id BAAI/bge-small-en-v1.5 --engine torch --preload-only || [ $? -eq 3 ]
 ENTRYPOINT ["infinity_emb"]
