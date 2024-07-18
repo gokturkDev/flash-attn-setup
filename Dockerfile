@@ -10,7 +10,7 @@ RUN source .venv/bin/activate
 RUN pip install flash_attn
 
 COPY test.py /app
-RUN python test.py
+
 
 # Set the working directory for the app
 
@@ -37,6 +37,6 @@ RUN poetry install --no-interaction --no-ansi --extras "${EXTRAS}"  --without li
 # remove cache
 RUN poetry cache clear pypi --all
 
-
+RUN python test.py
 RUN infinity_emb v2 --model-id BAAI/bge-small-en-v1.5 --engine torch --preload-only || [ $? -eq 3 ]
 ENTRYPOINT ["infinity_emb"]
