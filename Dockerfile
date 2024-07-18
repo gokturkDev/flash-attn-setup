@@ -22,8 +22,6 @@ ARG POETRY_HOME=/opt/poetry
 # Create a Python virtual environment for Poetry and install it
 RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=$POETRY_HOME POETRY_VERSION=$POETRY_VERSION python3.10 -
 
-ENV PATH=$POETRY_HOME/bin:$PATH
-
 # Test if Poetry is installed in the expected path
 RUN echo "Poetry version:" && poetry --version
 
@@ -40,7 +38,6 @@ RUN poetry cache clear pypi --all
 RUN python test.py
 
 ENV HF_HOME=/app/.cache/huggingface
-ENV PATH=/app/.venv/bin:$PATH
 
 RUN python3.10 -m infinity_emb.infinity_server:cli --model-id BAAI/bge-small-en-v1.5 --engine torch --preload-only || [ $? -eq 3 ]
 ENTRYPOINT ["infinity_emb"]
