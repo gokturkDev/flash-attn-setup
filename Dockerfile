@@ -13,7 +13,7 @@ ARG POETRY_VERSION=1.7.1
 ARG POETRY_HOME=/opt/poetry
 
 # Create a Python virtual environment for Poetry and install it
-RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=$POETRY_HOME POETRY_VERSION=$POETRY_VERSION 3.10.12 -
+RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=$POETRY_HOME POETRY_VERSION=$POETRY_VERSION python3.10 -
 
 ENV PATH=$POETRY_HOME/bin:$PATH
 
