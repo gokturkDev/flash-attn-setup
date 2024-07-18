@@ -38,5 +38,9 @@ RUN poetry install --no-interaction --no-ansi --extras "${EXTRAS}"  --without li
 RUN poetry cache clear pypi --all
 
 RUN python test.py
-RUN python3.10 -m infinity_emb.infinity_server:cli --model-id BAAI/bge-small-en-v1.5 --engine torch --preload-only || [ $? -eq 3 ]
+
+ENV HF_HOME=/app/.cache/huggingface
+ENV PATH=/app/.venv/bin:$PATH
+
+RUN infinity_emb --model-id BAAI/bge-small-en-v1.5 --engine torch --preload-only || [ $? -eq 3 ]
 ENTRYPOINT ["infinity_emb"]
