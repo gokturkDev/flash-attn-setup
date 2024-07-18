@@ -5,9 +5,6 @@ WORKDIR /app
 COPY test.py /app
 RUN python test.py
 
-CMD ["python", "test.py"]
-
-
 # Set the working directory for the app
 
 # Define the version of Poetry to install (default is 1.7.1)
