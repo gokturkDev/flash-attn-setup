@@ -41,5 +41,5 @@ RUN python test.py
 
 ENV HF_HOME=/app/.cache/huggingface
 
-RUN python3.10 infinity_emb.infinity_server:cli --model-id BAAI/bge-small-en-v1.5 --engine torch --preload-only || [ $? -eq 3 ]
+RUN python3.10 -m infinity_emb.infinity_server:cli --model-id BAAI/bge-small-en-v1.5 --engine torch --preload-only || [ $? -eq 3 ]
 ENTRYPOINT ["infinity_emb"]
